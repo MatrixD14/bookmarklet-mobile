@@ -9,7 +9,8 @@ let html=document.documentElement.outerHTML
 html=html.replace(/(&lt;!--[\s\S]*?--&gt;)/g,'<span style="color:#6a9955;">$1</span>')
          .replace(/(&lt;[^\s&]+)([\s\S]*?)(&gt;)/g,function(m,t,b,e){
             b=b.replace(/(\w+)=(["\'].*?["\'])/g,'<span style="color:#9cdcfe;">$1</span>=<span style="color:#ce9178;">$2</span>');
-            return '<span style="color:#569cd6;">'+t+'</span>'+b+'<span style="color:#569cd6;">'+e+'</span><br>';
+            let cdg='<span style="color:#569cd6;">'+t+'</span>'+b+'<span style="color:#569cd6;">'+e+'</span>';
+            return t=='&lt;br'?cdg:(t.startsWith("&lt;/")?cdg:'<br>'+cdg);
          });
 d.style='width:100%;height:93%;overflow:auto;padding:10px;background:#252526;color:#d4d4d4;font-family:monospace;';
 d.innerHTML=html;
@@ -60,11 +61,10 @@ function upd(){
               makeTable("localStorage",lsObj)+
               makeTable("sessionStorage",ssObj);
 }
-let intervalId=setInterval(upd,2000);
 function btn(txt,pos,fn){let b=document.createElement('button');b.textContent=txt;b.style="position:fixed;transform:translate(-50,-50);font-size:30px;bottom:0;right:"+pos+";z-index:1";b.onclick=fn;document.body.appendChild(b)}
-function tog(f){let o=p.style.height!="0px";p.style.height=o?"0":"60%";d.style.display=t.style.display=i.style.display="none";if(!o)f()}
+function tog(f){let o=p.style.height!="0px";p.style.height=o?"0":"60%";d.style.display=t.style.display=i.style.display="none";if(!o)f();else clearInterval(intervalId);}
 
 btn("Code","10%",()=>tog(()=>d.style.display="block"));
 btn("Term","30%",()=>tog(()=>{t.style.display="flex";inp.focus()}));
-btn("Info","50%",()=>tog(()=>{clearInterval(intervalId);upd();i.style.display="block"}));
+btn("Info","50%",()=>tog(()=>{upd();let intervalId=setInterval(upd,3000);i.style.display="block"}));
 })();
