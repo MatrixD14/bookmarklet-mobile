@@ -21,7 +21,7 @@ t.style="flex:1;display:none;flex-direction:column;background:#000;color:#0f0";
 let log=document.createElement('textarea');
 log.style="flex:1;background:#000;color:#0f0;border:none";log.readOnly=1;
 let inp=document.createElement('input');
-inp.style="padding:4px;background:#111;color:#fff;border:none;font-size:16px";
+inp.style="padding:8px 10px 4px 10px;background:#111;color:#fff;border:none;font-size:20px";
 t.appendChild(log);t.appendChild(inp);p.appendChild(t);
 inp.onkeydown=e=>{if(e.key=="Enter"){try{log.value+="\n>"+inp.value+"\n"+eval(inp.value)}catch(x){log.value+="\nERR:"+x}inp.value="";log.scrollTop=log.scrollHeight}};
 
@@ -42,7 +42,6 @@ function makeTable(title,obj){
   html+="</table>";
   return html;
 }
-
 function upd(){
   let cookieObj={};
   document.cookie.split(";").map(c=>c.trim()).forEach(c=>{
@@ -67,4 +66,4 @@ function tog(f){let o=p.style.height!="0px";p.style.height=o?"0":"60%";d.style.d
 btn("Code","10%",()=>tog(()=>d.style.display="block"));
 btn("Term","30%",()=>tog(()=>{t.style.display="flex";inp.focus()}));
 btn("Info","50%",()=>tog(()=>{upd();let intervalId=setInterval(upd,3000);i.style.display="block"}));
-})();
+})();/
