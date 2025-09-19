@@ -1,6 +1,6 @@
 javascript:(function(){
 let p=document.createElement('div');
-p.style="position:fixed;top:0;left:0;width:100%;height:0;z-index:9999;transition:.25s;height;background:#111;color:#eee;font:16px monospace;display:flex;flex-direction:column";
+p.style="position:fixed;top:0;left:0;width:100%;height:0;z-index:9999;transition:.25s;background:#111;color:#eee;font:16px monospace;display:flex;flex-direction:column";
 document.body.appendChild(p);
 
 let d=document.createElement('div');
