@@ -66,4 +66,4 @@ function tog(f){let o=p.style.height!="0px";p.style.height=o?"0":"60%";d.style.d
 btn("Code","10%",()=>tog(()=>d.style.display="block"));
 btn("Term","30%",()=>tog(()=>{t.style.display="flex";inp.focus()}));
 btn("Info","50%",()=>tog(()=>{upd();let intervalId=setInterval(upd,3000);i.style.display="block"}));
-})();/
+})();
